@@ -81,7 +81,7 @@ This file provides the claim information and search query for [Twitter search](h
     "instance id": {"claim": claim, "seed query":[sub_query,sub_query...],"time":time }
  }
  ```
-#### Tweet id
+#### BEARD.json
 This file contains tweet ids for 1198 instances. Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api).
 The data format is:
  ```
