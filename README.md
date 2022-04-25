@@ -92,7 +92,7 @@ Note that we cannot release the specific content of tweets due to the terms of u
 ```
   run xxx
 ```
-### Prepare Input data
+### Prepare input data
 After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can run our provided script directly:
 ```  
   run xxx
@@ -121,10 +121,11 @@ If you use this code in your research, please cite our [paper]().
 }
 ```
 
-## Contact for Issues
-- Fengzhu ZENG, fzzeng.2020@phdcs.smu.edu.sg
+## Contact for issues
+- Fengzhu Zeng, fzzeng.2020@phdcs.smu.edu.sg
+- Wei Gao, weigao@smu.edu.sg
 
-## References & Opensources
+## References & Open sources
 
 - **BERT** : [[BERT]](https://aclanthology.org/N19-1423.pdf)[[code]](https://github.com/huggingface/transformers), [[earliest rumor detection task]](https://link.springer.com/chapter/10.1007/978-3-030-88480-2_45#:~:text=Inspired%20by%20rumor%20psychology%2C%20we,features%20compared%20with%20non%2Drumor.)
 - **CED** : [[paper]](https://arxiv.org/pdf/1811.04175.pdf), [[code]](https://github.com/thunlp/CED)
