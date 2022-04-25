@@ -1,6 +1,6 @@
 # Early Rumor Detection Using Neural Hawkes Process with a New Benchmark Dataset (Accepted at NAACL 2022) 
 
-This is the official repository of EArly Rumor Detection (EARD) benchmark BEARD and model HEARD. 
+This is the official repository of EArly Rumor Detection (EARD) model HEARD and the early detection benchmark dataset BEARD. 
 
 - BEARD is the first EARD-oriented dataset, collected by including early-stage information relevant to the concerned claims from a fact-checking website [Snopes](https://www.snopes.com/fact-check/). BEARD contains 1,198 rumors and non-rumors reported during 2015/03-2021/01 with around 3.3 million relevant posts. 
 - HEARD is a novel EARD model based on the Neural Hawkes Process to automatically determine an optimal time point for stable early detection.
