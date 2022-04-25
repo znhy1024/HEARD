@@ -71,26 +71,33 @@ HEARD achieves the following performance on general classification metrics(accur
 </p>
 
 ## BEARD Dataset
-This section aims to help users obtain BEARD dataset and prepare data. 
+This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs). and prepare for the input data for our HEARD model. 
 ### Obtain BEARD dataset
 Relevant files can be found [here](https://drive.google.com/drive/folders/1_l4_E-yJgFx7nAhj_S8VSHTEATfri4BL?usp=sharing).
-#### BEARD_info.json
-This file provides the claim information and search query for [Twitter search](https://twitter.com/search-advanced?lang=en). Each key-value pair of an instance contains: instance id, claim content, query and claim publish time. The data format is:
+#### BEARD_claims.json
+This file provides the claim information and search query for [Twitter search](https://twitter.com/search-advanced?lang=en) we used to gather the dataset. Each key-value pair of an instance contains: instance id, claim content, query and claim publish time. The data format is:
  ```
  {
     "instance id": {"claim": claim, "seed query":[sub_query,sub_query...],"time":time }
  }
  ```
-#### BEARD.json
-This file contains tweet ids for 1198 instances. Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api).
-The data format is:
+#### BEARD_posts.json
+This file contains tweet ids for 1198 instances. The data format is as follows:
  ```
  {
     "instance id": {"eid": instance id, "post_ids":[id,id...] }
  }
  ```
+Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api) or by using the following script:
+```
+  run xxx
+```
 ### Prepare Input data
-After obtaining the tweets content from Twitter, user needs to prepare data for model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. The data format should be:
+After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can run our provided script directly:
+```  
+  run xxx
+``` 
+After running the script, input instance should be in the following format that will be fed into our HEARD model:
  ```
   {
   "eid": {
