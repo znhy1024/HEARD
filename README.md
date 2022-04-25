@@ -26,7 +26,7 @@ To train HEARD with default hyperparameters, run this command:
 python -u Main.py
 ```
 After training, it will automatically output the results in terms of accuracy, recall, precision, recall, early rate and SEA.
-You may also set the hyperparameters and data dir in in `config.json` to train your custom dataset and hyperparameters.
+You may also set the hyperparameters and data dir in `config.json` to train your custom dataset and hyperparameters.
 
 ## Evaluation
 By setting *evaluate_only* in `config.json`to true, you can use the same command ```python -u Main.py``` to test the trained model without training.
