@@ -88,22 +88,18 @@ This file contains tweet ids for 1198 instances. The data format is as follows:
     "instance id": {"eid": instance id, "post_ids":[id,id...] }
  }
  ```
-Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api) or by using the following script:
-```
-  run xxx
-```
+Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api) or by following this [blog](https://medium.com/analytics-vidhya/fetch-tweets-using-their-ids-with-tweepy-twitter-api-and-python-ee7a22dcb845).
+
 ### Prepare input data
-After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can run our provided script directly:
-```  
-  run xxx
-``` 
-After running the script, input instance should be in the following format that will be fed into our HEARD model:
+After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can refer to our example code in ```data_process.py```.
+
+After the above steps, input instance should be in the following format that will be fed into our HEARD model:
  ```
   {
   "eid": {
           "label": "1", # 1 for rumor, 0 for non-rumor
-          "merge_seqs": { # post are merged to shorten sequence
-              "merge_times": [[timestamp,timestamp,...], [timestamp,timestamp,...], ...], # post publish timestamp
+          "merge_seqs": { 
+              "merge_times": [[timestamp,timestamp,...], [timestamp,timestamp,...], ...],
               'merge_vecs': [[...], [...], ...], # tf-idf vecs[1000] for each interval, so the shape of merge_vecs should be [num of intervals,1000] 
               }}
   ...
@@ -116,8 +112,16 @@ If you use this code in your research, please cite our [paper]().
 
 ```
 @inproceedings{
-
-  year={2022}
+ address = {Seattle, Washington + Online},
+ author = {Zeng, Fengzhu  and Gao, Wei},
+ booktitle = {Proceedings of the 2022 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies},
+ doi = {},
+ pages = {},
+ publisher = {Association for Computational Linguistics},
+ title = {Early Rumor Detection Using Neural Hawkes Process with a New Benchmark Dataset},
+ url = {},
+ month = jul,
+ year={2022}
 }
 ```
 
