@@ -1,0 +1,95 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# After downloading the Tweets content, all data could be arranged as this format:
+# data = {
+#     eid:label,info:{tid:{text,time}}
+# }
+
+# Please sort the posts in each instance by time to get timeline and then merge the posts following your strategy. 
+# In our paper, the default strategy is that merge every 10 posts for BEARD.
+
+def get_timeline(info):
+    tids = []
+    timeline = []
+    texts = []
+    tid_time = {}
+    for tid,item in info.items():
+        nt = item['time']
+        if nt not in tid_time:
+            tid_time[nt] = [tid]
+        else:
+            tid_time[nt].append(tid)
+            tid_time[nt] = sorted(tid_time[nt])
+    time_s = sorted(tid_time.keys())
+
+    for nt in time_s:
+        ids = tid_time[nt]
+        for tid in ids:
+            tids.append(tid)
+            timeline.append(info[tid]['time'])
+            texts.append(info[tid]['text'])
+           
+    return tids,timeline,texts
+
+# data = {
+#     eid:label,info:{tid:{text,time}},timeline:[time]
+# }
+
+def timeline_convert_merge_post(data,interval=10):
+
+    for eid,_ in data.items():
+        timeLine = data[eid]['timeline']
+        texts = data[eid]['texts']
+
+        merge_index = list(range(len(timeLine)))[0::interval]
+        merge_texts,merge_times = [],[]
+        for i,index in enumerate(merge_index):
+            try:
+                next_index = merge_index[i+1]
+            except:
+                next_index = index+len(timeLine)+2
+            assert next_index != index
+            merge_text = [x for x in texts[index:next_index]]
+            merge_time = [x for x in timeLine[index:next_index]]
+
+            merge_texts.append(merge_text)
+            merge_times.append(merge_time)
+
+        data[eid]['merge_seqs'] = {'merge_times':merge_times,'merge_texts':merge_texts}
+    return data
+
+# Compute vecs
+# data = {
+#     eid:label,info:{tid:{text,time}},timeline:[time],merge_seqs:{merge_times,merge_texts}
+# }
+
+def compute_tfidf(data):
+
+    vec_data = {}
+    corpus = []
+    vecs = {}
+    for eid,info in data.items():
+        merge_seqs = info['merge_seqs']
+        merge_texts = merge_seqs['merge_texts']
+
+        vecs[eid] = [0]*len(merge_texts)
+        for ti,text in enumerate(merge_texts):
+            f_text = ' '.join(text).lower()
+            # raw text should be pre-processed before that, the unit could be either single text or merged texts 
+            corpus.append(f_text)
+            vecs[eid][ti] = len(corpus)-1
+
+    vectorizer = TfidfVectorizer(analyzer='word',stop_words= 'english',max_features=1000)
+    X = vectorizer.fit_transform(corpus)
+
+    for _,(eid,_) in enumerate(data.items()):
+        X_index = vecs[eid]
+        f_vecs = []
+        for index in X_index:
+            f_vecs.append(X[index])
+        tmp = [x.toarray().tolist()[0] for x in f_vecs]
+        vec_data[eid] = tmp
+        data[eid]['merge_seqs']['merge_vecs'] = tmp
+        data[eid].pop('info')
+        data[eid].pop('timeline')
+    return data
