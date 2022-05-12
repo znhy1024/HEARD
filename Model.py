@@ -128,11 +128,11 @@ class CTLSTMCell(nn.Module):
             gate_decay = gate_decay.unsqueeze(-1)
             gate_output = gate_output.unsqueeze(-1)
 
-        # c(t_i)=c_bar_i-1 + (c_i-c_bar_i)*exp(-delta_i*(t-t_i-1))
+        #Eq(7)
         cell_t_ip1_minus = cell_bar_i + (cell_i - cell_bar_i) * torch.exp(
             -gate_decay * dtime)
-            
-        # h(t)=o_i*(2*sigmoid(2(c_t_i))-1)
+        
+        #Eq(4b)
         hidden_t_ip1_minus = gate_output * torch.tanh(cell_t_ip1_minus)
         
         return cell_t_ip1_minus, hidden_t_ip1_minus
@@ -383,8 +383,7 @@ class HEARD(nn.Module):
                     seq_loss.append(100.0)
                     break
                 h_step = h_seq_HC[idx,step,:].unsqueeze(0)
-                assert h_step[0,0].item() != Inf
-                assert h_step[0,0].item() != -Inf
+
                 final_N = (reverse_seq_HC[idx,-1]-reverse_seq_HC[idx,step]).to(self.device)
                 if seq_len>1:
                     N_i = (reverse_seq_HC[idx,step+1]-reverse_seq_HC[idx,step]).to(self.device)
