@@ -135,5 +135,6 @@ If you use this code in your research, please cite our [paper]().
 - **CED** : [[paper]](https://arxiv.org/pdf/1811.04175.pdf), [[code]](https://github.com/thunlp/CED)
 - **ERD** : [[paper]](https://aclanthology.org/N19-1163/), [[code]](https://github.com/DeepBrainAI/ERD)
 - **STN** : [[paper]](https://aclanthology.org/2020.emnlp-main.727/)
+- **NHP** : [[paper]](https://arxiv.org/abs/1612.09328), [[code]](https://github.com/hongyuanmei/neurawkes)
 - **TWITTER dataset** : [[paper]](https://www.ijcai.org/Proceedings/16/Papers/537.pdf)
 - **PHEME dataset** : [[paper]](https://arxiv.org/pdf/1610.07363.pdf)
