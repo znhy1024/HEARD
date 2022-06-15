@@ -73,7 +73,7 @@ HEARD achieves the following performance on general classification metrics(accur
 ## BEARD Dataset
 This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs). and prepare for the input data for our HEARD model. 
 ### Obtain BEARD dataset
-Relevant files can be found [here](https://drive.google.com/drive/folders/1_l4_E-yJgFx7nAhj_S8VSHTEATfri4BL?usp=sharing).
+Relevant files can be found in BEARD.zip
 #### BEARD_claims.json
 This file provides the claim information and search query for [Twitter search](https://twitter.com/search-advanced?lang=en) we used to gather the dataset. Each key-value pair of an instance contains: instance id, claim content, query and claim publish time. The data format is:
  ```
