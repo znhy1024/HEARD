@@ -111,17 +111,17 @@ After the above steps, input instance should be in the following format that wil
 If you use this code in your research, please cite our [paper]().
 
 ```
-@inproceedings{
- address = {Seattle, Washington + Online},
- author = {Zeng, Fengzhu  and Gao, Wei},
- booktitle = {Proceedings of the 2022 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies},
- doi = {},
- pages = {},
- publisher = {Association for Computational Linguistics},
- title = {Early Rumor Detection Using Neural Hawkes Process with a New Benchmark Dataset},
- url = {},
- month = jul,
- year={2022}
+@inproceedings{zeng-gao-2022-early,
+    title = "{E}arly Rumor Detection Using Neural {H}awkes Process with a New Benchmark Dataset",
+    author = "Zeng, Fengzhu  and
+      Gao, Wei",
+    booktitle = "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jul,
+    year = "2022",
+    address = "Seattle, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.naacl-main.302",
+    pages = "4105--4117"
 }
 ```
 
