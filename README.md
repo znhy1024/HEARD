@@ -100,6 +100,7 @@ After the above steps, input instance should be in the following format that wil
           "label": "1", # 1 for rumor, 0 for non-rumor
           "merge_seqs": { 
               "merge_times": [[timestamp,timestamp,...], [timestamp,timestamp,...], ...],
+              "merge_tids": [[tid,tid,...], [tid,tid,...], ...],
               'merge_vecs': [[...], [...], ...], # tf-idf vecs[1000] for each interval, so the shape of merge_vecs should be [num of intervals,1000] 
               }}
   ...
