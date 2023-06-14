@@ -1,35 +1,42 @@
 {
-    "active_model": "HEARD",
-    "models": {
-      "HEARD": {
-        "early_stop_lr": 1e-5,
-        "early_stop_patience":6,
-        "hyperparameters": {
-          "learning_rate": {"RD":2e-4,"HC":2e-4},
-          "max_seq_len":100,
-          "max_post_len":300,
-          "batch_size": 16,
-          "epochs": 12,
-          "lstm_dropout": 0.1,
-          "fc_dropout": 0.3,
-          "beta": {"HC":1.0,"T":1.0,"N":1.0},
-          "hidden_size_HC": 64,
-          "hidden_size_RD": 128,
-          "in_feats_HC": 1,
-          "in_feats_RD": 1000,
-          "sample_integral": 100,
-          "sample_pred": 100,
-          "weight_decay": 1e-4,
-          "interval": 3600.0,
-          "decay_patience":3,
-          "lstm_layers":1
+  "active_model": "HEARD",
+  "models": {
+    "HEARD": {
+      "early_stop_lr": 1e-5,
+      "early_stop_patience": 6,
+      "hyperparameters": {
+        "learning_rate": {
+          "RD": 2e-4,
+          "HC": 2e-4
         },
-        "evaluate_only": false,
-        "data": "data/BEARD.pkl",
-        "data_ids":"data/BEARD_ids.pkl",
-        "device": "cuda",
-        "dataset":"BEARD",
-        "model_dir": "saved_models/"
-      }
+        "max_seq_len": 100,
+        "max_post_len": 300,
+        "batch_size": 16,
+        "epochs": 12,
+        "lstm_dropout": 0.1,
+        "fc_dropout": 0.3,
+        "beta": {
+          "HC": 1.0,
+          "T": 1.0,
+          "N": 1.0
+        },
+        "hidden_size_HC": 64,
+        "hidden_size_RD": 128,
+        "in_feats_HC": 1,
+        "in_feats_RD": 1000,
+        "sample_integral": 100,
+        "sample_pred": 100,
+        "weight_decay": 1e-4,
+        "interval": 3600.0,
+        "decay_patience": 3,
+        "lstm_layers": 1
+      },
+      "evaluate_only": false,
+      "data": "data/PAN_to_PHEME.pickle",
+      "data_ids": "data/PAN_data_ids.pickle",
+      "device": "cuda",
+      "dataset": "PHEME",
+      "model_dir": "saved_models/"
     }
   }
+}

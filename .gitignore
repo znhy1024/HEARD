@@ -152,3 +152,5 @@ data/
 wandb/
 nohup.out
 BEARD/
+utils/const.py
+saved_models
