@@ -105,7 +105,7 @@ This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2uj
  }
  ```
 #### BEARD_emb.zip
-This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the embeddings of each post. The folder structure is as follow:
+This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the BERT embeddings of each post. The folder structure is as follow:
 ```
 - BEARD_emb
    - instance id
@@ -118,7 +118,6 @@ The data format of json file is as follows:
    "pooler_output":pooler_output
  }
  ```
- The embeddings are computed using [BERTweet](https://github.com/VinAIResearch/BERTweet).
 
 ### Prepare input data
 After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can refer to our example code in ```data_process.py```.
