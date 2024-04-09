@@ -71,24 +71,54 @@ HEARD achieves the following performance on general classification metrics(accur
 </p>
 
 ## BEARD Dataset
-This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs). and prepare for the input data for our HEARD model. 
+This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs, timestamps and post embeddings), and prepare for the input data for our HEARD model. 
 ### Obtain BEARD dataset
-Relevant files can be found in BEARD.zip
-#### BEARD_claims.json
+Relevant files can be found in BEARD.zip and [link](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing).
+#### BEARD_info.json
 This file provides the claim information and search query for [Twitter search](https://twitter.com/search-advanced?lang=en) we used to gather the dataset. Each key-value pair of an instance contains: instance id, claim content, query and claim publish time. The data format is:
  ```
  {
     "instance id": {"claim": claim, "seed query":[sub_query,sub_query...],"time":time }
  }
+ Rumor's instance id starts with "S" while Non-Rumor's instance id starts with "N".
  ```
-#### BEARD_posts.json
+#### BEARD.json
 This file contains tweet ids for 1198 instances. The data format is as follows:
  ```
  {
     "instance id": {"eid": instance id, "post_ids":[id,id...] }
  }
  ```
-Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api) or by following this [blog](https://medium.com/analytics-vidhya/fetch-tweets-using-their-ids-with-tweepy-twitter-api-and-python-ee7a22dcb845).
+#### BEARD_trees.json
+This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the tree structure of each conversation of each instance. The data format is as follows:
+ ```
+ {
+    "instance id": {"tree": {root1 id:{reply1 id:{...},reply2 id:{...}...},...}, "parent_mappings":{root1 id:{child1 id:parent1 id,...}}} }
+ }
+ ```
+An instance may consist of multiple trees, each representing a conversation. Each tree comprises a root post and replies within the conversation. "parent_mappings" denotes the mappings of child posts to their respective parent posts, indicating which reply post corresponds to which parent post.
+#### BEARD_timestamps.json
+This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the timestamp of each post. The data format is as follows:
+ ```
+ {
+    "instance id": {post id: timestamp}
+ }
+ ```
+#### BEARD_emb.zip
+This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the embeddings of each post. The folder structure is as follow:
+```
+- BEARD_emb
+   - instance id
+      - post_id.json
+```
+
+The data format of json file is as follows:
+ ```
+ {
+   "pooler_output":pooler_output
+ }
+ ```
+ The embeddings are computed using [BERTweet](https://github.com/VinAIResearch/BERTweet).
 
 ### Prepare input data
 After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can refer to our example code in ```data_process.py```.
