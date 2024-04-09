@@ -104,7 +104,7 @@ This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2uj
     "instance id": {post id: timestamp}
  }
  ```
-#### BEARD_emb.zip
+#### post_embs.zip
 This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the BERT embeddings of each post. The folder structure is as follow:
 ```
 - BEARD_emb
@@ -112,7 +112,7 @@ This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2
       - post_id.json
 ```
 
-The data format of json file is as follows:
+The data format of post_id.json file is as follows:
  ```
  {
    "pooler_output":pooler_output
