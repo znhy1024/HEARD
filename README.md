@@ -72,6 +72,8 @@ HEARD achieves the following performance on general classification metrics(accur
 
 ## BEARD Dataset
 This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs, timestamps and post embeddings), and prepare for the input data for our HEARD model. 
+> [!NOTE]
+> The tree structure of each conversation, along with timestamps and post embeddings for each post, are provided.
 ### Obtain BEARD dataset
 Relevant files can be found in BEARD.zip and [link](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing).
 #### BEARD_info.json
