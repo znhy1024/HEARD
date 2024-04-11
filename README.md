@@ -1,5 +1,8 @@
 # Early Rumor Detection Using Neural Hawkes Process with a New Benchmark Dataset (Accepted at NAACL 2022) 
 
+> [!NOTE]
+> ### We additionally provide the tree structure of each conversation, along with timestamps and post embeddings for research purposes. See Section BEARD Dataset (Supplementary Materials).
+
 This is the official repository of EArly Rumor Detection (EARD) model HEARD and the early detection benchmark dataset BEARD. 
 
 - BEARD is the first EARD-oriented dataset, collected by including early-stage information relevant to the concerned claims from a fact-checking website [Snopes](https://www.snopes.com/fact-check/). BEARD contains 1,198 rumors and non-rumors reported during 2015/03-2021/01 with around 3.3 million relevant posts. 
@@ -8,7 +11,6 @@ This is the official repository of EArly Rumor Detection (EARD) model HEARD and 
 <p align="center">
 <img src="misc/HEARD.jpg" height=350>
 </p>
-
 
 ## Requirements
 
@@ -71,11 +73,10 @@ HEARD achieves the following performance on general classification metrics(accur
 </p>
 
 ## BEARD Dataset
-This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs, timestamps and post embeddings), and prepare for the input data for our HEARD model. 
-> [!NOTE]
-> The tree structure of each conversation, along with timestamps and post embeddings for each post, are provided.
+This section aims to help users obtain the public BEARD dataset, which consists of claims, queries and relevant tweets (in the form of Tweet IDs), and prepare for the input data for our HEARD model. 
+
 ### Obtain BEARD dataset
-Relevant files can be found in BEARD.zip and [link](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing).
+Relevant files can be found in BEARD.zip.
 #### BEARD_info.json
 This file provides the claim information and search query for [Twitter search](https://twitter.com/search-advanced?lang=en) we used to gather the dataset. Each key-value pair of an instance contains: instance id, claim content, query and claim publish time. The data format is:
  ```
@@ -91,6 +92,26 @@ This file contains tweet ids for 1198 instances. The data format is as follows:
     "instance id": {"eid": instance id, "post_ids":[id,id...] }
  }
  ```
+~~Note that we cannot release the specific content of tweets due to the terms of use of Twitter data. Users can download the content via [Twitter API](https://developer.twitter.com/en/docs/twitter-api) or by following this [blog](https://medium.com/analytics-vidhya/fetch-tweets-using-their-ids-with-tweepy-twitter-api-and-python-ee7a22dcb845).~~
+### Prepare input data
+After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can refer to our example code in ```data_process.py```.
+
+After the above steps, input instance should be in the following format that will be fed into our HEARD model:
+ ```
+  {
+  "eid": {
+          "label": "1", # 1 for rumor, 0 for non-rumor
+          "merge_seqs": { 
+              "merge_times": [[timestamp,timestamp,...], [timestamp,timestamp,...], ...],
+              "merge_tids": [[post_id,post_id,...], [post_id,post_id,...], ...],
+              'merge_vecs': [[...], [...], ...], # tf-idf vecs[1000] for each interval, so the shape of merge_vecs should be [num of intervals,1000] 
+              }}
+  ...
+  }
+  ```
+
+## BEARD Dataset (Supplementary Materials)
+
 #### BEARD_trees.json
 This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the tree structure of each conversation of each instance. The data format is as follows:
  ```
@@ -111,7 +132,9 @@ This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2
 ```
 - BEARD_emb
    - instance id
-      - post_id.json
+      - post_id1.json
+      - post_id2.json
+      - ...
 ```
 
 The data format of post_id.json file is as follows:
@@ -120,23 +143,6 @@ The data format of post_id.json file is as follows:
    "pooler_output":pooler_output
  }
  ```
-
-### Prepare input data
-After obtaining the tweets content, user needs to prepare input data for the HEARD model. User can follow [BERTweet](https://aclanthology.org/2020.emnlp-demos.2/)[[code](https://github.com/VinAIResearch/BERTweet)] to pre-process the text and this [example](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html) to generate tf-idf vectors. Alternatively, user can refer to our example code in ```data_process.py```.
-
-After the above steps, input instance should be in the following format that will be fed into our HEARD model:
- ```
-  {
-  "eid": {
-          "label": "1", # 1 for rumor, 0 for non-rumor
-          "merge_seqs": { 
-              "merge_times": [[timestamp,timestamp,...], [timestamp,timestamp,...], ...],
-              "merge_tids": [[post_id,post_id,...], [post_id,post_id,...], ...],
-              'merge_vecs': [[...], [...], ...], # tf-idf vecs[1000] for each interval, so the shape of merge_vecs should be [num of intervals,1000] 
-              }}
-  ...
-  }
-  ```
 
 ## Citation
 
