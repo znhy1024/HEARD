@@ -128,7 +128,9 @@ This [file](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2uj
  }
  ```
 #### post_embs.zip
-This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the BERT embeddings of each post. The folder structure is as follow:
+~~This [folder](https://drive.google.com/drive/folders/1lCl9k9MnheVgHzLNLNr6Jblrb2ujbYxZ?usp=sharing) contains the BERT embeddings of each post.~~
+The BERT embeddings are no longer available for direct download due to size constraints. If you need access, please contact us via email.
+The folder structure is as follow:
 ```
 - BEARD_emb
    - instance id
